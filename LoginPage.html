@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Digital Learning Portal — Landing</title>
+  <title>Digital Learning Portal — Login</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,55 +16,120 @@
       </div>
     </div>
     <nav class="container" aria-label="Main navigation">
+      <a href="LandingPage.html">Home</a>
       <a href="#features">Features</a>
       <a href="#how">How it works</a>
-      <!--<a href="LoginPage.html">Login</a>-->
       <a href="RegistrationPage.html">Register</a>
     </nav>
   </header>
 
-
-<div class="container" style="max-width:380px;margin-top:40px;">
+<div class="container" style="max-width:420px;margin-top:40px;">
 <div class="card">
-<h2>Login</h2>
+<h2>Welcome Back</h2>
+<p style="color:var(--muted);margin-bottom:20px">Login to access your courses</p>
 
+<label>Email *</label>
+<input type="email" id="loginEmail" onblur="validateLoginEmail()" placeholder="student@example.com">
+<div id="loginEmailErr" class="error">Please enter a valid email address</div>
 
-<label>Email</label>
-<input type="email" id="loginEmail" onblur="checkLoginEmail()">
-<div id="loginEmailErr" class="error">Please enter a valid email.</div>
+<label>Password *</label>
+<input type="password" id="loginPass" onblur="validateLoginPassword()" placeholder="Enter your password">
+<div id="loginPassErr" class="error">Password cannot be empty</div>
 
-
-<label>Password</label>
-<input type="password" id="loginPass" onblur="checkLoginPass()">
-<div id="loginPassErr" class="error">Password cannot be empty.</div>
-
-
-<button onclick="loginSubmit()">Login</button>
-<a href="register.html">Create a new account</a>
+<button onclick="handleLogin()">Login</button>
+<a href="RegistrationPage.html">Don't have an account? Create one</a>
 </div>
 </div>
 
+<footer>
+  Keysie Malika 190225 - Education Thematic Area
+</footer>
 
 <script>
-function checkLoginEmail(){
-let email = document.getElementById('loginEmail').value.trim();
-let err = document.getElementById('loginEmailErr');
-err.style.display = (email === '' || !email.includes('@')) ? 'block' : 'none';
+// Email validation
+function validateLoginEmail(){
+  const input = document.getElementById('loginEmail');
+  const error = document.getElementById('loginEmailErr');
+  const value = input.value.trim();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+  if(value === '' || !emailRegex.test(value)){
+    error.style.display = 'block';
+    input.classList.add('error-input');
+    return false;
+  } else {
+    error.style.display = 'none';
+    input.classList.remove('error-input');
+    return true;
+  }
 }
-function checkLoginPass(){
-let pass = document.getElementById('loginPass').value.trim();
-let err = document.getElementById('loginPassErr');
-err.style.display = (pass === '') ? 'block' : 'none';
-}
-function loginSubmit(){
-checkLoginEmail();
-checkLoginPass();
-if(document.querySelectorAll('.error[style*="block"]').length === 0){
-location.href='dashboard.html';
-}
-}
-</script>
 
+// Password validation
+function validateLoginPassword(){
+  const input = document.getElementById('loginPass');
+  const error = document.getElementById('loginPassErr');
+  const value = input.value.trim();
+  
+  if(value === ''){
+    error.style.display = 'block';
+    input.classList.add('error-input');
+    return false;
+  } else {
+    error.style.display = 'none';
+    input.classList.remove('error-input');
+    return true;
+  }
+}
+
+// Login submission
+function handleLogin(){
+  // Validate both fields
+  const emailValid = validateLoginEmail();
+  const passValid = validateLoginPassword();
+  
+  // If both validations pass
+  if(emailValid && passValid){
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPass').value;
+    
+    // Simulate login (in real app, this would check against backend)
+    const registeredUser = localStorage.getItem('registeredUser');
+    
+    if(registeredUser){
+      const userData = JSON.parse(registeredUser);
+      
+      // Simple check if email matches (password check would be done server-side)
+      if(userData.email === email){
+        // Store logged in user
+        localStorage.setItem('currentUser', JSON.stringify(userData));
+        alert('Login successful! Redirecting to dashboard...');
+        location.href = 'dashboard.html';
+      } else {
+        alert('Invalid credentials. Please try again or register.');
+      }
+    } else {
+      // Allow login anyway for demo purposes
+      const demoUser = {
+        email: email,
+        firstName: 'Student',
+        lastName: 'Name'
+      };
+      localStorage.setItem('currentUser', JSON.stringify(demoUser));
+      alert('Login successful! Redirecting to dashboard...');
+      location.href = 'dashboard.html';
+    }
+  }
+}
+
+// Allow Enter key to submit
+document.addEventListener('DOMContentLoaded', function(){
+  document.getElementById('loginPass').addEventListener('keypress', function(e){
+    if(e.key === 'Enter'){
+      handleLogin();
+    }
+  });
+});
+</script>
 
 </body>
 </html>
