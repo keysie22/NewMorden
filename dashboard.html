@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="container" style="display:flex;justify-content:space-between;align-items:center">
+  <div class="brand">
+    <div class="logo">NM</div>
+    <div>
+      <div style="font-weight:800">NewMorden Learning</div>
+      <div style="font-size:0.85rem;color:var(--muted)">Access courses • Track progress</div>
+    </div>
+  </div>
+  <nav>
+    <a href="LandingPage.html">Home</a>
+    <a href="LoginPage.html">Logout</a>
+  </nav>
+</header>
+
+<div class="container" style="margin-top:20px;">
+
+  <h1 style="font-size:1.8rem;margin-bottom:10px;">Welcome, Student!</h1>
+  <p style="color:var(--muted);margin-bottom:24px;">Here is your learning overview.</p>
+
+  <!-- Dashboard Grid -->
+  <div style="display:grid;grid-template-columns:2fr 1fr;gap:20px;">
+
+    <!-- Left Column -->
+    <div>
+      <!-- Courses Section -->
+      <div class="card" style="margin-bottom:20px;">
+        <h2 style="font-size:1.3rem;margin-bottom:14px;">My Courses</h2>
+        <ul style="list-style:none;padding-left:0;line-height:1.8;">
+          <li>• Web Development Basics</li>
+          <li>• Introduction to Programming</li>
+          <li>• Data Structures</li>
+        </ul>
+      </div>
+
+      <!-- Assignments Section -->
+      <div class="card">
+        <h2 style="font-size:1.3rem;margin-bottom:14px;">Upcoming Assignments</h2>
+        <ul style="list-style:none;padding-left:0;line-height:1.8;">
+          <li><strong>Web Dev Project</strong> – Due: Nov 28</li>
+          <li><strong>Programming Quiz</strong> – Due: Nov 30</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div>
+      <!-- Progress Card -->
+      <div class="card">
+        <h2 style="font-size:1.3rem;margin-bottom:16px;">Progress Summary</h2>
+        <p style="margin-bottom:10px;">Overall Completion</p>
+        <div style="height:14px;background:#e2e8f0;border-radius:8px;overflow:hidden;margin-bottom:16px;">
+          <div style="width:72%;height:100%;background:var(--accent);"></div>
+        </div>
+        <p style="font-size:1.2rem;font-weight:800;">72%</p>
+      </div>
+
+      <!-- Notifications Card -->
+      <div class="card" style="margin-top:20px;">
+        <h2 style="font-size:1.3rem;margin-bottom:16px;">Notifications</h2>
+        <ul style="list-style:none;padding-left:0;line-height:1.7;">
+          <li>• New assignment uploaded in "Data Structures"</li>
+          <li>• Class meeting scheduled for Monday</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  Student Dashboard • Digital Learning Platform
+</footer>
+
+</body>
+</html>

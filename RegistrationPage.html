@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Digital Learning Portal — Landing</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="brand container">
+      <div class="logo">NM</div>
+      <div>
+        <div style="font-weight:800">NewModern Learning</div>
+        <div style="font-size:0.85rem;color:var(--muted)">Access courses • Track progress</div>
+      </div>
+    </div>
+    <nav class="container" aria-label="Main navigation">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="LoginPage.html">Login</a>
+      <!--<a href="RegistrationPage.html">Register</a>-->
+    </nav>
+  </header>
+
+
+<div class="container" style="max-width:380px;margin-top:40px;">
+<div class="card">
+<h2>Create Account</h2>
+
+
+<label>Email</label>
+<input type="email" id="regEmail" onblur="checkRegEmail()">
+<div id="regEmailErr" class="error">Please enter a valid email.</div>
+
+
+<label>First Name</label>
+<input type="text" id="regFirst" onblur="checkRegFirst()">
+<div id="regFirstErr" class="error">First name is required.</div>
+
+
+<label>Last Name</label>
+<input type="text" id="regLast" onblur="checkRegLast()">
+<div id="regLastErr" class="error">Last name is required.</div>
+
+
+<label>Password</label>
+<input type="password" id="regPass" onblur="checkRegPass()">
+<div id="regPassErr" class="error">Password must be at least 4 characters.</div>
+
+
+<label>Gender</label>
+<select id="regGender" onblur="checkRegGender()">
+<option value="">Select...</option>
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+</select>
+<div id="regGenderErr" class="error">Please select a gender.</div>
+
+
+<button onclick="regSubmit()">Register</button>
+<a href="login.html">Already have an account?</a>
+</div>
+</div>
+
+
+<script>
+function checkRegEmail(){
+let v = document.getElementById('regEmail').value.trim();
+document.getElementById('regEmailErr').style.display = (v === '' || !v.includes('@')) ? 'block' : 'none';
+}
+function checkRegFirst(){
+let v = document.getElementById('regFirst').value.trim();
+document.getElementById('regFirstErr').style.display = (v === '') ? 'block' : 'none';
+}
+function checkRegLast(){
+let v = document.getElementById('regLast').value.trim();
+document.getElementById('regLastErr').style.display = (v === '') ? 'block' : 'none';
+}
+function checkRegPass(){
+let v = document.getElementById('regPass').value.trim();
+document.getElementById('regPassErr').style.display = (v.length < 4) ? 'block' : 'none';
+}
+function checkRegGender(){
+let v = document.getElementById('regGender').value;
+document.getElementById('regGenderErr').style.display = (v === '') ? 'block' : 'none';
+}
+
+
+function regSubmit(){
+checkRegEmail(); checkRegFirst(); checkRegLast(); checkRegPass(); checkRegGender();
+if(document.querySelectorAll('.error[style*="block"]').length === 0){
+alert('Registration successful (simulated)!');
+}
+}
+</script>
+
+
+</body>
+</html>

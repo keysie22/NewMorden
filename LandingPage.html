@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Digital Learning Portal — Landing</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="brand container">
+      <div class="logo">NM</div>
+      <div>
+        <div style="font-weight:800">NewModern Learning</div>
+        <div style="font-size:0.85rem;color:var(--muted)">Access courses • Track progress</div>
+      </div>
+    </div>
+    <nav class="container" aria-label="Main navigation">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="LoginPage.html">Login</a>
+      <a href="RegistrationPage.html">Register</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <h1>Organize learning. Track progress. Learn better.</h1>
+        <p class="lead">A simple web interface where students can view courses, check assignments, and monitor their progress — designed for fast access and easy expansion into a full e-learning system.</p>
+        <div class="cta">
+          <button class="btn btn-primary" id="getStarted">Get started (Register)</button>
+          <button class="btn btn-ghost" id="login">Login</button>
+        </div>
+
+        <div class="feature-list" id="features">
+          <div class="feature">
+            <strong>Courses</strong>
+            <h4>Course Catalog</h4>
+            <p>Browse and enroll in courses. Placeholder static data for the lab.</p>
+          </div>
+          <div class="feature">
+            <strong>Assignments</strong>
+            <h4>Track deadlines</h4>
+            <p>View upcoming assignments and due dates at a glance.</p>
+          </div>
+          <div class="feature">
+            <strong>Progress</strong>
+            <h4>Visual progress</h4>
+            <p>See percentage completion per course — perfect for quick checks.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="mockcard" aria-hidden="false">
+        <h3 style="margin:0 0 12px">Student snapshot</h3>
+        <div style="font-size:0.95rem;color:var(--muted);margin-bottom:12px">Welcome back, <strong>Student Name</strong></div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between"><div>My Courses</div><div style="font-weight:800">3</div></div>
+          <div style="display:flex;justify-content:space-between"><div>Assignments due</div><div style="font-weight:800;color:#b45309">2</div></div>
+          <div style="display:flex;justify-content:space-between"><div>Overall progress</div><div style="font-weight:800">72%</div></div>
+    
+        <div style="display:flex;justify-content:space-between"><div>Teacher Remarks</div><div style="font-weight:800;color:#b45309">2</div></div>
+        <div style="margin-top:14px;display:flex;gap:8px">
+          <button class="btn btn-ghost" onclick="location.href='dashboard.html'">Open Dashboard</button>
+        </div>
+      </aside>
+    </section>
+
+    <section id="how" style="margin-top:28px">
+      <div class="mockcard">
+        <h3 style="margin-top:0">How it works (lab-friendly)</h3>
+        <ol style="margin:8px 0 0 18px;color:var(--muted)">
+          <li>Static HTML pages represent different screens (landing, register, login, dashboard).</li>
+          <li>Use local JavaScript to validate forms and simulate navigation.</li>
+          <li>When instructed later, PHP sessions can be added to show user data dynamically.</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Keysie Malika 190225- Education Thematic Area
+  </footer>
+
+  <script>
+    document.getElementById('getStarted').addEventListener('click', function(){
+      location.href = 'RegistrationPage.html';
+    });
+    document.getElementById('login').addEventListener('click', function(){
+      location.href = 'LoginPage.html';
+      
+    });
+  </script>
+</body>
+</html>
