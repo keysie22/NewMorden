@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Digital Learning Portal — Landing</title>
+  <title>Digital Learning Portal — Registration</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,86 +16,167 @@
       </div>
     </div>
     <nav class="container" aria-label="Main navigation">
+      <a href="LandingPage.html">Home</a>
       <a href="#features">Features</a>
       <a href="#how">How it works</a>
       <a href="LoginPage.html">Login</a>
-      <!--<a href="RegistrationPage.html">Register</a>-->
     </nav>
   </header>
 
-
-<div class="container" style="max-width:380px;margin-top:40px;">
+<div class="container" style="max-width:420px;margin-top:40px;">
 <div class="card">
 <h2>Create Account</h2>
 
+<label>Email *</label>
+<input type="email" id="regEmail" onblur="validateEmail()" placeholder="student@example.com">
+<div id="regEmailErr" class="error">Please enter a valid email address</div>
 
-<label>Email</label>
-<input type="email" id="regEmail" onblur="checkRegEmail()">
-<div id="regEmailErr" class="error">Please enter a valid email.</div>
+<label>First Name *</label>
+<input type="text" id="regFirst" onblur="validateFirstName()" placeholder="John">
+<div id="regFirstErr" class="error">First name is required</div>
 
+<label>Last Name *</label>
+<input type="text" id="regLast" onblur="validateLastName()" placeholder="Doe">
+<div id="regLastErr" class="error">Last name is required</div>
 
-<label>First Name</label>
-<input type="text" id="regFirst" onblur="checkRegFirst()">
-<div id="regFirstErr" class="error">First name is required.</div>
+<label>Password *</label>
+<input type="password" id="regPass" onblur="validatePassword()" placeholder="At least 6 characters">
+<div id="regPassErr" class="error">Password must be at least 6 characters long</div>
 
-
-<label>Last Name</label>
-<input type="text" id="regLast" onblur="checkRegLast()">
-<div id="regLastErr" class="error">Last name is required.</div>
-
-
-<label>Password</label>
-<input type="password" id="regPass" onblur="checkRegPass()">
-<div id="regPassErr" class="error">Password must be at least 4 characters.</div>
-
-
-<label>Gender</label>
-<select id="regGender" onblur="checkRegGender()">
-<option value="">Select...</option>
-<option>Male</option>
-<option>Female</option>
-<option>Other</option>
+<label>Gender *</label>
+<select id="regGender" onblur="validateGender()">
+<option value="">Select your gender...</option>
+<option value="Male">Male</option>
+<option value="Female">Female</option>
+<option value="Other">Other</option>
+<option value="PreferNotToSay">Prefer not to say</option>
 </select>
-<div id="regGenderErr" class="error">Please select a gender.</div>
+<div id="regGenderErr" class="error">Please select a gender</div>
 
-
-<button onclick="regSubmit()">Register</button>
-<a href="login.html">Already have an account?</a>
+<button onclick="handleSubmit()">Create Account</button>
+<a href="LoginPage.html">Already have an account? Login</a>
 </div>
 </div>
 
+<footer>
+  Keysie Malika 190225 - Education Thematic Area
+</footer>
 
 <script>
-function checkRegEmail(){
-let v = document.getElementById('regEmail').value.trim();
-document.getElementById('regEmailErr').style.display = (v === '' || !v.includes('@')) ? 'block' : 'none';
-}
-function checkRegFirst(){
-let v = document.getElementById('regFirst').value.trim();
-document.getElementById('regFirstErr').style.display = (v === '') ? 'block' : 'none';
-}
-function checkRegLast(){
-let v = document.getElementById('regLast').value.trim();
-document.getElementById('regLastErr').style.display = (v === '') ? 'block' : 'none';
-}
-function checkRegPass(){
-let v = document.getElementById('regPass').value.trim();
-document.getElementById('regPassErr').style.display = (v.length < 4) ? 'block' : 'none';
-}
-function checkRegGender(){
-let v = document.getElementById('regGender').value;
-document.getElementById('regGenderErr').style.display = (v === '') ? 'block' : 'none';
+// Email validation
+function validateEmail(){
+  const input = document.getElementById('regEmail');
+  const error = document.getElementById('regEmailErr');
+  const value = input.value.trim();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+  if(value === '' || !emailRegex.test(value)){
+    error.style.display = 'block';
+    input.classList.add('error-input');
+    return false;
+  } else {
+    error.style.display = 'none';
+    input.classList.remove('error-input');
+    return true;
+  }
 }
 
-
-function regSubmit(){
-checkRegEmail(); checkRegFirst(); checkRegLast(); checkRegPass(); checkRegGender();
-if(document.querySelectorAll('.error[style*="block"]').length === 0){
-alert('Registration successful (simulated)!');
+// First name validation
+function validateFirstName(){
+  const input = document.getElementById('regFirst');
+  const error = document.getElementById('regFirstErr');
+  const value = input.value.trim();
+  
+  if(value === ''){
+    error.style.display = 'block';
+    input.classList.add('error-input');
+    return false;
+  } else {
+    error.style.display = 'none';
+    input.classList.remove('error-input');
+    return true;
+  }
 }
+
+// Last name validation
+function validateLastName(){
+  const input = document.getElementById('regLast');
+  const error = document.getElementById('regLastErr');
+  const value = input.value.trim();
+  
+  if(value === ''){
+    error.style.display = 'block';
+    input.classList.add('error-input');
+    return false;
+  } else {
+    error.style.display = 'none';
+    input.classList.remove('error-input');
+    return true;
+  }
+}
+
+// Password validation
+function validatePassword(){
+  const input = document.getElementById('regPass');
+  const error = document.getElementById('regPassErr');
+  const value = input.value.trim();
+  
+  if(value.length < 6){
+    error.style.display = 'block';
+    input.classList.add('error-input');
+    return false;
+  } else {
+    error.style.display = 'none';
+    input.classList.remove('error-input');
+    return true;
+  }
+}
+
+// Gender validation
+function validateGender(){
+  const input = document.getElementById('regGender');
+  const error = document.getElementById('regGenderErr');
+  const value = input.value;
+  
+  if(value === ''){
+    error.style.display = 'block';
+    input.classList.add('error-input');
+    return false;
+  } else {
+    error.style.display = 'none';
+    input.classList.remove('error-input');
+    return true;
+  }
+}
+
+// Form submission
+function handleSubmit(){
+  // Validate all fields
+  const emailValid = validateEmail();
+  const firstValid = validateFirstName();
+  const lastValid = validateLastName();
+  const passValid = validatePassword();
+  const genderValid = validateGender();
+  
+  // If all validations pass
+  if(emailValid && firstValid && lastValid && passValid && genderValid){
+    alert('Registration successful! Redirecting to login...');
+    // Store user data in localStorage for demo purposes
+    const userData = {
+      email: document.getElementById('regEmail').value,
+      firstName: document.getElementById('regFirst').value,
+      lastName: document.getElementById('regLast').value,
+      gender: document.getElementById('regGender').value
+    };
+    localStorage.setItem('registeredUser', JSON.stringify(userData));
+    
+    // Redirect to login page
+    setTimeout(() => {
+      location.href = 'LoginPage.html';
+    }, 1000);
+  }
 }
 </script>
-
 
 </body>
 </html>
